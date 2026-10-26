@@ -1,0 +1,55 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:#fff;min-height:100vh;background:#061329;overflow-x:hidden}
+.bg{position:fixed;inset:0;background:radial-gradient(circle at 20% 10%,#1b75ff77,transparent 33%),radial-gradient(circle at 80% 25%,#39ffe066,transparent 30%),linear-gradient(135deg,#061329,#0b48bd 50%,#061329);z-index:-2}
+.bg:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#ffffff08 0 1px,transparent 1px 70px)}
+.install-banner{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:10;background:#07101d;border:1px solid #7bdcff;border-radius:999px;padding:7px 10px;box-shadow:0 0 22px #53e8ff66;display:flex;gap:8px;align-items:center;font-weight:800}
+.install-banner button{border:0;border-radius:999px;padding:5px 10px;font-weight:800}
+.shell{width:min(1200px,94vw);margin:70px auto 40px}
+.access-card,.dashboard,.locked-card{border:1px solid #72eaff;border-radius:24px;background:linear-gradient(145deg,#0b55d9dd,#09245bdd);box-shadow:0 0 45px #00d5ff55;padding:26px}
+.locked-screen{width:min(950px,94vw);margin:90px auto}
+.locked-card{text-align:center}
+.center{justify-content:center;flex-wrap:wrap}
+.eyebrow{color:#6affdf;font-weight:900;letter-spacing:.05em}
+h1{font-size:clamp(42px,7vw,76px);line-height:.95;margin:10px 0}
+.subhead{font-size:20px;font-weight:800;margin-top:0}
+.access-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:18px}
+.panel{position:relative;border:1px solid #74eeff;border-radius:20px;background:#061b52cc;padding:22px;box-shadow:inset 0 0 24px #2a6cff44}
+.panel h2{font-size:28px;margin:0 0 15px}
+.price{font-size:42px;color:#5dfff1;font-weight:900}
+.price span{font-size:24px}
+ul{list-style:none;padding:0;margin:18px 0}
+li{margin:11px 0;font-weight:800}
+input,select,textarea{width:100%;border:1px solid #9bdcff;border-radius:10px;background:#020817;color:#fff;padding:13px;margin:8px 0;font-size:16px}
+textarea{min-height:100px}
+.button-row{display:flex;gap:10px}
+.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:900;cursor:pointer;box-shadow:0 0 12px rgba(0,255,150,.35)}
+.btn.primary{background:#6cff73;color:#05230a}
+.btn.secondary{background:#dce8ff;color:#061329}
+.btn.ghost{background:#0a1b47;color:#bffcff;border:1px solid #70eaff}
+.wide{width:100%}
+.link-btn{margin:10px 10px 0 0;background:transparent;border:0;color:#bffcff;text-decoration:underline;font-weight:900;cursor:pointer}
+.hint,.secure-note,.user-email{font-weight:800;color:#dff9ff}
+.message{margin-top:10px;font-weight:900;color:#fff;background:#041238;border:1px solid #2befff88;border-radius:10px;padding:10px;min-height:38px}
+.hidden{display:none}
+.dash-hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;border:1px solid #72eaff;border-radius:22px;background:#082b72cc;padding:22px;margin-bottom:18px}
+.dash-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.badge{background:#4b79ff;border-radius:999px;padding:12px 20px;font-weight:900}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.mini-card{border:1px solid #72eaff;border-radius:18px;background:#0a3b9ccc;padding:18px}
+.mini-card span{display:block;color:#bcecff;font-weight:800}
+.mini-card strong{font-size:28px}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.inline{display:flex;gap:10px}
+.inline input{margin:0}
+.watchlist div,.signal,#journalList div{margin-top:10px;background:#041238;border:1px solid #2befff88;border-radius:10px;padding:10px;font-weight:800}
+label{display:block;margin:12px 0;font-weight:800}
+label input{width:auto;margin-right:8px}
+.ai-module{border-color:#b58cff;box-shadow:inset 0 0 28px #8f5dff55}
+.ai-tag{display:inline-block;background:#6b4bff;border:1px solid #c4b5ff;border-radius:999px;padding:8px 12px;font-weight:900;margin-bottom:10px}
+.lock-note{display:none;margin-top:10px;background:#07101d;border:1px solid #7bdcff;border-radius:10px;padding:10px;text-align:center;font-weight:900}
+.free-mode .pro-only .lock-note,.free-mode .ai-only .lock-note,.pro-mode .ai-only .lock-note{display:block}
+.free-mode .pro-only textarea,.free-mode .pro-only button:not(.btn.ghost),.free-mode .ai-only button:not(#aiUpgradeBtn),.pro-mode .ai-only button:not(#aiUpgradeBtn){opacity:.45;pointer-events:none}
+@media(max-width:1000px){.access-grid{grid-template-columns:1fr 1fr}.work-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:850px){.access-grid,.cards,.work-grid{grid-template-columns:1fr}.dash-hero{flex-direction:column}h1{font-size:46px}.install-banner{font-size:13px}.shell{width:96vw;margin-top:64px}.access-card,.dashboard{padding:16px}}
+
+.master-unlock-box{margin-top:12px;padding-top:12px;border-top:1px solid #70eaff55}

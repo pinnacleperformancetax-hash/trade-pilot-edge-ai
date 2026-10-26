@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradePilot Edge Pro + AI</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#061329" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TradePilot" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png" />
+  <link rel="stylesheet" href="styles.css?v=601" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div id="installBanner" class="install-banner">
+    <span>Install TradePilot like an app.</span>
+    <button id="installHelp" type="button">How</button>
+    <button id="closeInstall" type="button">×</button>
+  </div>
+
+  <main class="shell">
+    <section id="accessPanel" class="access-card">
+      <div class="eyebrow">SECURE TRADEPILOT ACCESS</div>
+      <h1>TradePilot Edge Pro</h1>
+      <p class="subhead">Free preview available. Pro + AI unlock the full trading desk.</p>
+
+      <div class="access-grid">
+        <div class="panel">
+          <h2>Create Account / Login</h2>
+          <input id="email" type="email" placeholder="Email address" autocomplete="email" />
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+          <div class="button-row">
+            <button id="createAccountBtn" type="button" class="btn primary">Create Account</button>
+            <button id="loginBtn" type="button" class="btn secondary">Login</button>
+          </div>
+          <button id="freePreviewBtn" type="button" class="btn ghost wide">Continue Free Preview</button>
+          <button id="magicLinkBtn" type="button" class="link-btn">Email Login Link</button>
+          <button id="resetPasswordBtn" type="button" class="link-btn">Reset Password</button>
+          <div class="master-unlock-box">
+            <input id="masterCode" type="password" placeholder="Owner master code" autocomplete="off" />
+            <button id="masterUnlockBtn" type="button" class="btn primary wide">Master Unlock</button>
+          </div>
+          <p class="hint">You can pay first. Login is only needed to unlock the dashboard after payment.</p>
+          <div id="loginMessage" class="message">Ready.</div>
+        </div>
+
+        <div class="panel">
+          <h2>Free Preview</h2>
+          <div class="price">$0<span>/mo</span></div>
+          <ul>
+            <li>View basic dashboard</li>
+            <li>Try ticker watchlist</li>
+            <li>Manual STOP / WAIT preview</li>
+            <li>Upgrade anytime</li>
+          </ul>
+          <button id="freePreviewBtn2" type="button" class="btn ghost wide">Open Free Preview</button>
+        </div>
+
+        <div class="panel">
+          <h2>Pro</h2>
+          <div class="price">$29<span>/mo</span></div>
+          <ul>
+            <li>STOP / WAIT / GO engine</li>
+            <li>Risk calculator</li>
+            <li>Trade plan output</li>
+            <li>Saved setup memory</li>
+            <li>Trade journal</li>
+          </ul>
+          <button id="unlockProAccess" type="button" class="btn primary wide">Switch / Unlock Pro</button>
+        </div>
+
+        <div class="panel ai-panel">
+          <h2>TradePilot AI</h2>
+          <div class="price">$79<span>/mo</span></div>
+          <ul>
+            <li>AI-style signal reasoning</li>
+            <li>Confidence scoring</li>
+            <li>Watchlist assistant</li>
+            <li>Decision explanation</li>
+          </ul>
+          <button id="unlockAiAccess" type="button" class="btn secondary wide">Switch / Unlock AI</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="lockedPanel" class="locked-screen hidden">
+      <div class="locked-card">
+        <div class="eyebrow">ACCOUNT FOUND</div>
+        <h1>Access Locked</h1>
+        <p class="subhead">Your login works. Full access unlocks after payment.</p>
+        <p id="lockedEmail" class="hint"></p>
+        <div class="button-row center">
+          <button id="lockedFreeBtn" type="button" class="btn ghost">Free Preview</button>
+          <button id="lockedPayBtn" type="button" class="btn primary">Switch / Unlock Pro — $29/mo</button>
+          <button id="lockedAiBtn" type="button" class="btn secondary">Switch / Unlock AI — $79/mo</button>
+          <button id="refreshAccessBtn" type="button" class="btn secondary">Refresh Access</button>
+          <button id="lockedLogoutBtn" type="button" class="btn secondary">Log Out</button>
+        </div>
+        <div id="lockedMessage" class="message">Logged in. Payment required for Pro/AI dashboard.</div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+      <div class="dash-hero">
+        <div>
+          <div id="dashEyebrow" class="eyebrow">FREE PREVIEW</div>
+          <h1>TradePilot Edge</h1>
+          <p class="subhead">Stop. Wait. Go. Simple trade decision support.</p>
+          <p id="userEmailLine" class="user-email"></p>
+        </div>
+        <div class="dash-actions">
+          <span id="paidBadge" class="badge">Free Preview</span>
+          <button id="switchFreeTop" type="button" class="btn ghost">Free Preview</button>
+          <button id="upgradeProTop" type="button" class="btn primary">Switch / Unlock Pro</button>
+          <button id="upgradeAiTop" type="button" class="btn primary">Switch / Unlock AI</button>
+          <button id="logoutBtn" type="button" class="btn secondary">Log Out</button>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="mini-card"><span>Mode</span><strong id="modeText">Preview</strong></div>
+        <div class="mini-card"><span>Risk Style</span><strong>Controlled</strong></div>
+        <div class="mini-card"><span>Status</span><strong id="statusText">Free</strong></div>
+      </div>
+
+      <div class="work-grid">
+        <div class="panel">
+          <h2>Custom Ticker</h2>
+          <div class="inline">
+            <input id="tickerInput" placeholder="Type ticker, ex: MSFT" />
+            <button id="addTicker" type="button" class="btn primary">Add</button>
+          </div>
+        </div>
+
+        <div class="panel pro-only">
+          <h2>Setup Memory</h2>
+          <button id="saveSetup" type="button" class="btn primary">Save Setup</button>
+          <button id="loadSetup" type="button" class="btn primary">Load Setup</button>
+          <div class="lock-note">Pro required</div>
+        </div>
+
+        <div class="panel">
+          <h2>Watchlist</h2>
+          <div id="watchlist" class="watchlist"></div>
+        </div>
+
+        <div class="panel large">
+          <h2>Market Check</h2>
+          <label><input type="checkbox" id="spyOk" /> SPY not crashing</label>
+          <label><input type="checkbox" id="nasdaqOk" /> NASDAQ stable</label>
+          <label><input type="checkbox" id="trendOk" /> Trend matches trade direction</label>
+        </div>
+
+        <div class="panel large">
+          <h2>Stock Setup</h2>
+          <select id="stockSelect">
+            <option>SPY</option>
+            <option>QQQ</option>
+            <option>AAPL</option>
+            <option>MSFT</option>
+            <option>NVDA</option>
+            <option>TSLA</option>
+          </select>
+          <label><input type="checkbox" id="volumeOk" /> Volume confirmed</label>
+          <label><input type="checkbox" id="entryOk" /> Entry level respected</label>
+          <label><input type="checkbox" id="riskOk" /> Risk is controlled</label>
+          <button id="evaluateBtn" type="button" class="btn primary wide">Evaluate</button>
+          <div id="signalBox" class="signal">Waiting for setup...</div>
+        </div>
+
+        <div class="panel large pro-only">
+          <h2>Trade Journal</h2>
+          <textarea id="journalNote" placeholder="Write trade note..."></textarea>
+          <button id="saveJournal" type="button" class="btn primary">Save Note</button>
+          <div id="journalList"></div>
+          <div class="lock-note">Pro required</div>
+        </div>
+
+        <div id="aiModule" class="panel large ai-module ai-only">
+          <h2>TradePilot AI</h2>
+          <div class="ai-tag">AI Build Started</div>
+          <p id="aiSummary">Run Evaluate first. AI will explain the decision and suggest the next safer action.</p>
+          <button id="aiExplainBtn" type="button" class="btn secondary wide">AI Explain Signal</button>
+          <button id="aiUpgradeBtn" type="button" class="btn primary wide">Switch / Unlock AI — $79/mo</button>
+          <div class="lock-note">AI required</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js?v=601"></script>
+</body>
+</html>

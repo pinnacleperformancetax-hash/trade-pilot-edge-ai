@@ -1,0 +1,21 @@
+TRADEPILOT EDGE AI — CORRECTED BUILD
+
+This build is prepared for deployment but requires Netlify configuration before login, owner unlock, or paid subscriptions can work.
+
+Netlify environment variables:
+SUPABASE_URL = https://ouilcegadmbduvvureat.supabase.co
+SUPABASE_SERVICE_ROLE_KEY = secret service_role key for THIS Supabase project; Netlify Functions only.
+SUPABASE_PUBLISHABLE_KEY = publishable (sb_publishable_...) or legacy anon key from THIS Supabase project.
+MASTER_OWNER_EMAILS = comma-separated confirmed owner login email(s).
+MASTER_UNLOCK_CODE = a newly generated, private random code of at least 12 characters.
+STRIPE_WEBHOOK_SECRET = Stripe endpoint signing secret (whsec_...); mandatory.
+
+Set Supabase Auth URL Configuration Site URL to https://tradepilotedgeai.com and allow that redirect.
+
+SECURITY: Never commit Netlify secret values or the master code to GitHub. No master code is included in this ZIP.
+The existing payment links are unchanged; verify their ownership, price, and Stripe webhook endpoint.
+The Stripe webhook now rejects requests without a configured signing secret. Verify payment events end-to-end before accepting customers.
+The subscription model is still email-based; it requires confirmed Supabase Auth emails. The frontend paid tier is not a substitute for server-side enforcement for future paid APIs.
+
+Upload this ZIP to Netlify or extract and commit its contents to a PRIVATE GitHub repository.
+The site has not been tested against live Supabase or Stripe credentials.

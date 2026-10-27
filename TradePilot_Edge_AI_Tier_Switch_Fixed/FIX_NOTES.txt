@@ -1,0 +1,7 @@
+TradePilot access switching fix (2026-10-27)
+- Pro/AI buttons check authenticated server-side entitlements before checkout.
+- Owners with pro_active=true and ai_active=true can switch between Free Preview, Pro, and AI without paying.
+- Unentitled users are prompted before opening Stripe.
+- New service-worker cache version helps prevent stale app.js.
+- Does not change Supabase permissions or Netlify secrets.
+- Deploy through the existing GitHub repository; keep project root/publish settings unchanged.
